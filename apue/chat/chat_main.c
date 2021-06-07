@@ -67,6 +67,7 @@ int main(int argc, char *argv[]) {
                 break;
             }
             write(connfd, str, strlen(str));
+            // 注册描述符
             FD_SET(connfd, &allset);
             if (connfd > maxfd) {
                 maxfd = connfd;

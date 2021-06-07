@@ -1,4 +1,5 @@
 #include "x86.h"
+#include "proc.h"
 #include <stdio.h>
 
 CPU cpu = {};
@@ -17,4 +18,13 @@ int main(int argc, char* argv[]) {
     printf("the address is: %p, the value is %lld\n", ptr_x, prt_v);
 
     printf("sub = %x\n", 0x1a7e60 - 0xc);
+
+    struct struct_proc proc;
+    proc.pid = 1;
+    proc.link = 987;
+
+    printf("struct poin = %p\n", &proc);
+    size_t offset = (size_t)(&(((struct struct_proc *) 0)->link));
+    struct struct_proc* proc_m = (struct struct_proc *)((char *)(&proc.link) - offset);
+    printf("offset by member %p, %ld\n", proc_m, offset);
 }
